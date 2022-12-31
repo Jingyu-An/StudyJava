@@ -8,28 +8,26 @@ public class Pow {
 	}
 	public static double myPow(double x, int n) {
 		if (x == 0) return 0;
-		if (x == 1 || n == 0) return 1;
-		if (x == -1) {
+		else if (x == 1 || n == 0) return 1;
+		else if (x == -1) {
 			if (n % 2 == 0) return 1;
 			else return -1;
 		}
 
 		double result = 1;
-		if (n > 0) {
-			while (n != 0) {
-				if (result >= 10000) return 10000;
-				if (result <= -10000) return -10000;
-				if (result == 0) return 0;
+		int tempN = n;
+
+		while (tempN != 0) {
+			if (tempN % 2 == 0) {
+				x = x * x;
+				tempN /= 2;
+			} else {
 				result = result * x;
-				n--;
-			}
-		} else {
-			while (n != 0) {
-				if (result == 0) return 0;
-				result = result / x;
-				n++;
+				if (tempN < 0) tempN += 1;
+				else tempN -= 1;
 			}
 		}
+		if (n < 0) return 1/result;
 		return result;
 	}
 }
